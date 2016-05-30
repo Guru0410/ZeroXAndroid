@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="6">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ScrollView01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/TextViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ZeroX Game"
+                    android:gravity="center"
+                    android:textColor="@color/win_bg"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="25dp">
+                </TextView>
+
+                <EditText
+                    android:id="@+id/Player1"
+                    android:layout_height="wrap_content"
+                    android:hint="Player One"
+                    android:inputType="textPersonName"
+                    android:layout_width="fill_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="35dp">
+                </EditText>
+
+                <EditText
+                    android:id="@+id/Player2"
+                    android:layout_height="wrap_content"
+                    android:hint="Player Two"
+                    android:inputType="textPersonName"
+                    android:layout_width="fill_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp">
+                </EditText>
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/rg1">
+
+                    <RadioButton android:id="@+id/r1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 Match"/>
+                    <RadioButton android:id="@+id/r2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 Match"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
+                    <RadioButton android:id="@+id/r3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5 Match"/>
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="30dp">
+
+                    <LinearLayout
+                        android:id="@+id/startGame3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:gravity="center"
+                        android:background="@drawable/mode_btn"
+                        android:layout_margin="25dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3 X 3"
+                            android:textColor="@color/win_bg"
+                            android:textSize="23dp">
+                        </TextView>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/startGame4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:gravity="center"
+                        android:background="@drawable/mode_btn"
+                        android:layout_margin="25dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4 X 4"
+                            android:textColor="@color/win_bg"
+                            android:textSize="23dp">
+                        </TextView>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/about_btn"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ABOUT"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:textColor="@color/win_bg"
+                        android:textSize="16dp">
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

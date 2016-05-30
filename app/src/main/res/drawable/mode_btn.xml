@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:innerRadiusRatio="2.3"
+            android:shape="ring"
+            android:thicknessRatio="40"
+            android:useLevel="false" >
+            <solid android:color="@color/win_bg" />
+            <size
+                android:height="60dip"
+                android:width="60dip" />
+        </shape>
+
+    </item>
+
+</layer-list>
