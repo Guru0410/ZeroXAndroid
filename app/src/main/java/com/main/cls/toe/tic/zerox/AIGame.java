@@ -12,8 +12,8 @@ public class AIGame {
     private char mBoard[];
     private final static int BOARD_SIZE=9;
 
-    public static final char HUMAN_PLAYER = 'X';
-    public static final char ANDROID_PLAYER = '0';
+    public static final char HUMAN_TURN = 'X';
+    public static final char ANDROID_TURN = '0';
     public static final char EMPTY_SPACE =' ';
 
     private Random mRand;
@@ -47,11 +47,20 @@ public class AIGame {
         }
     }
 
-
+    /**
+     * Selects the board cell.
+     * @param player
+     * @param location
+     */
     public void setMove(char player, int location)
     {
         mBoard[location] = player;
     }
+
+    /**
+     * Main AI logic
+     * @return
+     */
 
     public int getComputerMove()
     {
@@ -59,13 +68,13 @@ public class AIGame {
 
         for(int i = 0; i< getBoardSize(); i++)
         {
-            if(mBoard[i] != HUMAN_PLAYER && mBoard[i] != ANDROID_PLAYER)
+            if(mBoard[i] != HUMAN_TURN && mBoard[i] != ANDROID_TURN)
             {
                 char curr = mBoard[i];
-                mBoard[i] = ANDROID_PLAYER;
+                mBoard[i] = ANDROID_TURN;
                 if(checkForWinner() == 3)
                 {
-                    setMove(ANDROID_PLAYER,i);
+                    setMove(ANDROID_TURN,i);
                     return i;
                 }
                 else
@@ -76,13 +85,13 @@ public class AIGame {
         }
         for(int i = 0; i< getBoardSize(); i++)
         {
-            if(mBoard[i] != HUMAN_PLAYER && mBoard[i] != ANDROID_PLAYER)
+            if(mBoard[i] != HUMAN_TURN && mBoard[i] != ANDROID_TURN)
             {
                 char curr = mBoard[i];
-                mBoard[i] = HUMAN_PLAYER;
+                mBoard[i] = HUMAN_TURN;
                 if(checkForWinner() == 2)
                 {
-                    setMove(ANDROID_PLAYER,i);
+                    setMove(ANDROID_TURN,i);
                     return i;
                 }
                 else
@@ -94,12 +103,16 @@ public class AIGame {
         do
         {
             move = mRand.nextInt(getBoardSize());
-        } while (mBoard[move] == HUMAN_PLAYER || mBoard[move] == ANDROID_PLAYER );
+        } while (mBoard[move] == HUMAN_TURN || mBoard[move] == ANDROID_TURN );
 
-        setMove(ANDROID_PLAYER,move);
+        setMove(ANDROID_TURN,move);
         return move;
     }
 
+    /**
+     * Novice Level Functionality
+     * @return
+     */
     public int randomMove()
     {
         boolean move_flag = false;
@@ -110,7 +123,7 @@ public class AIGame {
 
             for (int i = 0; i < getBoardSize(); i++) {
                 if (move == i) {
-                    if (mBoard[i] != HUMAN_PLAYER && mBoard[i] != ANDROID_PLAYER) {
+                    if (mBoard[i] != HUMAN_TURN && mBoard[i] != ANDROID_TURN) {
 
                         move_flag = true;
                         break;
@@ -122,15 +135,19 @@ public class AIGame {
         return move;
     }
 
+    /**
+     * Returns the final Winner
+     * @return
+     */
     public int checkForWinner()
     {
         for(int i = 0; i<=6; i +=3)
         {
-            if(mBoard[i]== HUMAN_PLAYER && mBoard[i+1] == HUMAN_PLAYER && mBoard[i+2]== HUMAN_PLAYER)
+            if(mBoard[i]== HUMAN_TURN && mBoard[i+1] == HUMAN_TURN && mBoard[i+2]== HUMAN_TURN)
             {
                 return 2;
             }
-            if(mBoard[i]== ANDROID_PLAYER && mBoard[i+1] == ANDROID_PLAYER && mBoard[i+2]== ANDROID_PLAYER)
+            if(mBoard[i]== ANDROID_TURN && mBoard[i+1] == ANDROID_TURN && mBoard[i+2]== ANDROID_TURN)
             {
                 return 3;
             }
@@ -139,38 +156,38 @@ public class AIGame {
 
         for(int i = 0; i<=2; i ++)
         {
-            if(mBoard[i]== HUMAN_PLAYER && mBoard[i+3] == HUMAN_PLAYER && mBoard[i+6]== HUMAN_PLAYER)
+            if(mBoard[i]== HUMAN_TURN && mBoard[i+3] == HUMAN_TURN && mBoard[i+6]== HUMAN_TURN)
             {
                 return 2;
             }
-            if(mBoard[i]== ANDROID_PLAYER && mBoard[i+3] == ANDROID_PLAYER && mBoard[i+6]== ANDROID_PLAYER)
+            if(mBoard[i]== ANDROID_TURN && mBoard[i+3] == ANDROID_TURN && mBoard[i+6]== ANDROID_TURN)
             {
                 return 3;
             }
 
         }
 
-        if(mBoard[0]== HUMAN_PLAYER && mBoard[4] == HUMAN_PLAYER && mBoard[8]== HUMAN_PLAYER )
+        if(mBoard[0]== HUMAN_TURN && mBoard[4] == HUMAN_TURN && mBoard[8]== HUMAN_TURN )
         {
             return 2;
         }
 
-        if( mBoard[2]== HUMAN_PLAYER && mBoard[4] == HUMAN_PLAYER && mBoard[6]== HUMAN_PLAYER)
+        if( mBoard[2]== HUMAN_TURN && mBoard[4] == HUMAN_TURN && mBoard[6]== HUMAN_TURN)
         {
             return 2;
         }
 
-        if(mBoard[0]== ANDROID_PLAYER && mBoard[4] == ANDROID_PLAYER && mBoard[8]== ANDROID_PLAYER) {
+        if(mBoard[0]== ANDROID_TURN && mBoard[4] == ANDROID_TURN && mBoard[8]== ANDROID_TURN) {
             return 3;
         }
 
-        if(mBoard[2]== ANDROID_PLAYER && mBoard[4] == ANDROID_PLAYER && mBoard[6]== ANDROID_PLAYER)
+        if(mBoard[2]== ANDROID_TURN && mBoard[4] == ANDROID_TURN && mBoard[6]== ANDROID_TURN)
         {
             return 3;
         }
         for(int i = 0; i < getBoardSize(); i++)
         {
-            if(mBoard[i] != HUMAN_PLAYER && mBoard[i] != ANDROID_PLAYER)
+            if(mBoard[i] != HUMAN_TURN && mBoard[i] != ANDROID_TURN)
             {
                 return 0;
             }

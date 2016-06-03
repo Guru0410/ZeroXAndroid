@@ -20,10 +20,6 @@ public class ComputerMode extends AppCompatActivity {
         private AIGame mGame;
         private LinearLayout mBoardButton[];
         public static TextView mBoardText[];
-//        private TextView mInfoTextView;
-//        private TextView mHumanCount;
-//        private TextView mTieCount;
-//        private TextView mAndroidCount;
         TextView txt_draw_score, txt_player_turn, txt_player1_score, txt_player2_score, txt_player1_name, txt_player2_name;
 
         private boolean mHumanFirst = true;
@@ -34,7 +30,11 @@ public class ComputerMode extends AppCompatActivity {
         Context context;
         Handler handler;
 
-        @Override
+    /**
+     * Displays on creation of vs Android Screen
+     * @param savedInstanceState
+     */
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.computer_mode);
@@ -84,41 +84,45 @@ public class ComputerMode extends AppCompatActivity {
             startNewGame();
         }
 
-        private void initialize()
-        {
-            mBoardButton[0] = (LinearLayout) findViewById(R.id.layout1);
-            mBoardButton[1] = (LinearLayout) findViewById(R.id.layout2);
-            mBoardButton[2] = (LinearLayout) findViewById(R.id.layout3);
+    /**
+     * Initializes the Game Board Vs Computer
+     */
+    private void initialize()
+    {
+        mBoardButton[0] = (LinearLayout) findViewById(R.id.layout1);
+        mBoardButton[1] = (LinearLayout) findViewById(R.id.layout2);
+        mBoardButton[2] = (LinearLayout) findViewById(R.id.layout3);
 
-            mBoardButton[3] = (LinearLayout) findViewById(R.id.layout4);
-            mBoardButton[4] = (LinearLayout) findViewById(R.id.layout5);
-            mBoardButton[5] = (LinearLayout) findViewById(R.id.layout6);
+        mBoardButton[3] = (LinearLayout) findViewById(R.id.layout4);
+        mBoardButton[4] = (LinearLayout) findViewById(R.id.layout5);
+        mBoardButton[5] = (LinearLayout) findViewById(R.id.layout6);
 
-            mBoardButton[6] = (LinearLayout) findViewById(R.id.layout7);
-            mBoardButton[7] = (LinearLayout) findViewById(R.id.layout8);
-            mBoardButton[8] = (LinearLayout) findViewById(R.id.layout9);
+        mBoardButton[6] = (LinearLayout) findViewById(R.id.layout7);
+        mBoardButton[7] = (LinearLayout) findViewById(R.id.layout8);
+        mBoardButton[8] = (LinearLayout) findViewById(R.id.layout9);
 
-            mBoardText[0] = (TextView) findViewById(R.id.text1);
-            mBoardText[1] = (TextView) findViewById(R.id.text2);
-            mBoardText[2] = (TextView) findViewById(R.id.text3);
+        mBoardText[0] = (TextView) findViewById(R.id.text1);
+        mBoardText[1] = (TextView) findViewById(R.id.text2);
+        mBoardText[2] = (TextView) findViewById(R.id.text3);
 
-            mBoardText[3] = (TextView) findViewById(R.id.text4);
-            mBoardText[4] = (TextView) findViewById(R.id.text5);
-            mBoardText[5] = (TextView) findViewById(R.id.text6);
+        mBoardText[3] = (TextView) findViewById(R.id.text4);
+        mBoardText[4] = (TextView) findViewById(R.id.text5);
+        mBoardText[5] = (TextView) findViewById(R.id.text6);
 
-            mBoardText[6] = (TextView) findViewById(R.id.text7);
-            mBoardText[7] = (TextView) findViewById(R.id.text8);
-            mBoardText[8] = (TextView) findViewById(R.id.text9);
+        mBoardText[6] = (TextView) findViewById(R.id.text7);
+        mBoardText[7] = (TextView) findViewById(R.id.text8);
+        mBoardText[8] = (TextView) findViewById(R.id.text9);
 
-            txt_player1_name = (TextView) findViewById(R.id.txt_player1_name);
-            txt_player2_name = (TextView) findViewById(R.id.txt_player2_name);
-            txt_player1_score = (TextView) findViewById(R.id.txt_player1_score);
-            txt_player2_score = (TextView) findViewById(R.id.txt_player2_score);
-            txt_draw_score = (TextView) findViewById(R.id.txt_draw_score);
-            txt_player_turn = (TextView) findViewById(R.id.txt_player_turn);
-        }
-        private void startNewGame()
-        {
+        txt_player1_name = (TextView) findViewById(R.id.txt_player1_name);
+        txt_player2_name = (TextView) findViewById(R.id.txt_player2_name);
+        txt_player1_score = (TextView) findViewById(R.id.txt_player1_score);
+        txt_player2_score = (TextView) findViewById(R.id.txt_player2_score);
+        txt_draw_score = (TextView) findViewById(R.id.txt_draw_score);
+        txt_player_turn = (TextView) findViewById(R.id.txt_player_turn);
+    }
+
+    private void startNewGame()
+    {
             txt_player_turn.setText("");
             mGame.clearBoard();
 
@@ -139,18 +143,23 @@ public class ComputerMode extends AppCompatActivity {
             {
 //                txt_player_turn.setText("Player Turn : " + player_2_name);
                 int move = mGame.getComputerMove();
-                setMove(mGame.ANDROID_PLAYER,move);
+                setMove(mGame.ANDROID_TURN,move);
                 mHumanFirst = true;
             }
         }
 
-        private void setMove(char player, int location)
+    /**
+     * Sets the move on board
+     * @param player
+     * @param location
+     */
+    private void setMove(char player, int location)
         {
             mGame.setMove(player, location);
             mBoardButton[location].setEnabled(false);
             mBoardText[location].setText(String.valueOf(player));
 
-            if(player == mGame.HUMAN_PLAYER)
+            if(player == mGame.HUMAN_TURN)
             {
                 mBoardText[location].setTextColor(Color.parseColor("#FF9E27"));
 //                txt_player_turn.setTextColor(Color.parseColor("#F42B6F"));
@@ -162,46 +171,48 @@ public class ComputerMode extends AppCompatActivity {
             }
         }
 
-        public void checkSeries()
+    /**
+     * Logic for running a series of 3 or 5
+     */
+    public void checkSeries()
+    {
+        System.out.println("Human : " + HumanWon);
+        System.out.println("Comp : " + ComputerWon);
+        System.out.println("Draw : " + DrawGame);
+        System.out.println("Counter : " + Counter);
+
+        txt_player1_score.setText(String.valueOf(HumanWon));
+        txt_player2_score.setText(String.valueOf(ComputerWon));
+        txt_draw_score.setText(String.valueOf(DrawGame));
+
+        if(Counter > 0)
         {
-            System.out.println("Human : " + HumanWon);
-            System.out.println("Comp : " + ComputerWon);
-            System.out.println("Draw : " + DrawGame);
-            System.out.println("Counter : " + Counter);
-
-            txt_player1_score.setText(String.valueOf(HumanWon));
-            txt_player2_score.setText(String.valueOf(ComputerWon));
-            txt_draw_score.setText(String.valueOf(DrawGame));
-
-            if(Counter > 0)
-            {
-                mHumanFirst = true;
-                mGameOver = false;
-                mGame = new AIGame();
-                startNewGame();
+            mHumanFirst = true;
+            mGameOver = false;
+            mGame = new AIGame();
+            startNewGame();
 //                txt_player_turn.setText("Player Turn : " + player_1_name);
+        }
+        else
+        {
+            if(HumanWon > ComputerWon)
+            {
+                currentState = 2;
+            }
+            else if( ComputerWon > HumanWon)
+            {
+                currentState = 3;
             }
             else
             {
-                if(HumanWon > ComputerWon)
-                {
-                    currentState = 2;
-                }
-                else if( ComputerWon > HumanWon)
-                {
-                    currentState = 3;
-                }
-                else
-                {
-                    currentState = 1;
-                }
-                popup(false);
+                currentState = 1;
             }
+            popup(false);
         }
+    }
 
-
-        private class ButtonClickListener implements View.OnClickListener
-        {
+    private class ButtonClickListener implements View.OnClickListener
+    {
             int location;
             public ButtonClickListener(int location)
             {
@@ -213,7 +224,7 @@ public class ComputerMode extends AppCompatActivity {
                 {
                     if(mBoardButton[location].isEnabled())
                     {
-                        setMove(mGame.HUMAN_PLAYER,location);
+                        setMove(mGame.HUMAN_TURN,location);
                     }
 
                     int winner = mGame.checkForWinner();
@@ -226,7 +237,7 @@ public class ComputerMode extends AppCompatActivity {
                         else
                             move = mGame.getComputerMove();
 
-                        setMove(mGame.ANDROID_PLAYER,move);
+                        setMove(mGame.ANDROID_TURN,move);
                         winner = mGame.checkForWinner();
                     }
                     if(winner == 0)
@@ -277,6 +288,15 @@ public class ComputerMode extends AppCompatActivity {
         }
 
     /**
+     * Displays the popup to pause, exit or move to home screen.
+     */
+    @Override
+    public void onBackPressed() {
+
+        popup(true);
+    }
+
+    /**
      * Pop up display after the game is finished or onBack Press Event
      * @param backPressed
      */
@@ -296,6 +316,7 @@ public class ComputerMode extends AppCompatActivity {
             TextView btnCancel = (TextView) dialog.findViewById(R.id.btnCancel);
             TextView btnPlayAgain = (TextView) dialog.findViewById(R.id.btnPlayAgain);
             TextView btnResume = (TextView) dialog.findViewById(R.id.btnResume);
+            TextView giftMsg = (TextView) dialog.findViewById(R.id.giftMsg);
 
             if(backPressed)
             {
@@ -303,23 +324,28 @@ public class ComputerMode extends AppCompatActivity {
                 txtMsg2.setText("Game PAUSED !");
                 btnResume.setVisibility(View.VISIBLE);
                 btnPlayAgain.setVisibility(View.GONE);
+                giftMsg.setVisibility(View.GONE);
             }
             else
             {
                 txtMsg1.setVisibility(View.VISIBLE);
                 btnResume.setVisibility(View.GONE);
                 btnPlayAgain.setVisibility(View.VISIBLE);
+                giftMsg.setVisibility(View.VISIBLE);
             }
 
             switch(currentState)
             {
                 case 1: txtMsg2.setText("Game DRAWN !");
+                        giftMsg.setVisibility(View.GONE);
                     break;
 
                 case 2: txtMsg2.setText(player_1_name + " Won the Game !");
+                        giftMsg.setVisibility(View.VISIBLE);
                     break;
 
                 case 3: txtMsg2.setText(player_2_name + " Won the Game !");
+                        giftMsg.setVisibility(View.GONE);
                     break;
             }
 
