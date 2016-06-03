@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -49,9 +50,9 @@ public class Grid4x4 extends AppCompatActivity implements View.OnClickListener {
     Handler handler;
     Context context;
     Intent intent;
-    int Series, CrossWon, NoughtWon, DrawGame, Counter;
+    int Series, CrossWon, NoughtWon, DrawGame, Counter, turn_mode;
     String player_1_name, player_2_name;
-
+    MediaPlayer player_X, player_O;
 
     /**
      * Main page displays on the creation of grid screen
@@ -92,6 +93,9 @@ public class Grid4x4 extends AppCompatActivity implements View.OnClickListener {
         player_1_name = intent.getStringExtra("Player_1_Name");
         player_2_name = intent.getStringExtra("Player_2_Name");
         Series = intent.getIntExtra("Series", 0);
+        turn_mode = intent.getIntExtra("TurnMode", 1);
+        player_X = MediaPlayer.create(this, R.raw.alert);
+        player_O = MediaPlayer.create(this, R.raw.alert1);
         Counter = Series;
 
         initialize();
@@ -349,8 +353,11 @@ public class Grid4x4 extends AppCompatActivity implements View.OnClickListener {
                 text[row][col].setTextColor(Color.parseColor("#666666"));
             }
         }
-        currentState = PLAYING; // ready to play
-        currentPlayer = CROSS;  // cross plays first
+        currentState = PLAYING;
+        if(turn_mode == 0)
+            currentPlayer = NOUGHT;
+        else
+            currentPlayer = CROSS;
     }
 
     /**
@@ -362,8 +369,14 @@ public class Grid4x4 extends AppCompatActivity implements View.OnClickListener {
         if (rowMove >= 0 && rowMove < ROWS && colMove >= 0 && colMove < COLS && board[rowMove][colMove] == EMPTY) {
             currentRow = rowMove;
             currentCol = colMove;
-            board[currentRow][currentCol] = seed;  // update game-board content
-            validInput = true;  // input okay, exit loop
+            board[currentRow][currentCol] = seed;
+
+            if(currentPlayer == CROSS)
+                player_X.start();
+            else
+                player_O.start();
+
+            validInput = true;
         } else {
             validInput = false;
 

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -47,8 +48,9 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
     Handler handler;
     Context context;
     Intent intent;
-    int Series, CrossWon, NoughtWon, DrawGame, Counter;
+    int Series, CrossWon, NoughtWon, DrawGame, Counter, turn_mode;
     String player_1_name, player_2_name;
+    MediaPlayer player_X, player_O;
 
     /**
      * Main page displays on the creation of grid screen
@@ -87,6 +89,9 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
         player_1_name = intent.getStringExtra("Player_1_Name");
         player_2_name = intent.getStringExtra("Player_2_Name");
         Series = intent.getIntExtra("Series", 0);
+        turn_mode = intent.getIntExtra("TurnMode", 1);
+        player_X = MediaPlayer.create(this, R.raw.alert);
+        player_O = MediaPlayer.create(this, R.raw.alert1);
         Counter = Series;
 
         initialize();
@@ -333,7 +338,10 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
                 }
             }
             currentState = PLAYING;
-            currentPlayer = CROSS;
+            if(turn_mode == 0)
+                currentPlayer = NOUGHT;
+            else
+                currentPlayer = CROSS;
         }
         catch(Exception ex)
         {
@@ -352,6 +360,11 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
                 currentRow = rowMove;
                 currentCol = colMove;
                 board[currentRow][currentCol] = seed;
+                if(currentPlayer == CROSS)
+                    player_X.start();
+                else
+                    player_O.start();
+
                 validInput = true;
             }
             else

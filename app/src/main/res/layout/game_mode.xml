@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:weightSum="6">
 
     <LinearLayout
@@ -36,27 +37,222 @@
                     android:textSize="25dp">
                 </TextView>
 
-                <EditText
-                    android:id="@+id/Player1"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Player One"
-                    android:inputType="textPersonName"
-                    android:layout_width="fill_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="35dp">
-                </EditText>
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp">
 
-                <EditText
-                    android:id="@+id/Player2"
-                    android:layout_height="wrap_content"
-                    android:hint="Player Two"
-                    android:inputType="textPersonName"
-                    android:layout_width="fill_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="5dp">
-                </EditText>
+                    <LinearLayout
+                        android:id="@+id/vsPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/win_bg"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="20dp"
+                        >
+                        <TextView
+                            android:id="@+id/vsPlayerText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="vs Player"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="8dp"
+                            android:paddingLeft="8dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="19dp">
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/vsComputer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        >
+                        <TextView
+                            android:id="@+id/vsComputerText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="vs Android"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingRight="8dp"
+                            android:paddingLeft="8dp"
+                            android:textColor="@color/win_bg"
+                            android:textSize="19dp">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/multiplayer"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="150dp"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                        android:id="@+id/Player1"
+                        android:layout_height="wrap_content"
+                        android:hint="Player One"
+                        android:inputType="textPersonName"
+                        android:layout_width="235dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="35dp">
+                    </EditText>
+
+                        <LinearLayout
+                            android:id="@+id/player_1_choose"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="bottom"
+                            android:layout_margin = "5dp"
+                            android:gravity="center"
+                            android:background="@drawable/mode_btn">
+
+                            <TextView
+                                android:id="@+id/txt_player_1_choose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="X"
+                                android:textColor="@color/win_bg"
+                                android:textSize="18dp">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                        android:id="@+id/Player2"
+                        android:layout_height="wrap_content"
+                        android:hint="Player Two"
+                        android:inputType="textPersonName"
+                        android:layout_width="235dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="5dp">
+                    </EditText>
+
+                        <LinearLayout
+                            android:id="@+id/player_2_choose"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="bottom"
+                            android:layout_margin = "5dp"
+                            android:gravity="center"
+                            android:background="@drawable/mode_btn">
+
+                            <TextView
+                                android:id="@+id/txt_player_2_choose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="O"
+                                android:textColor="@color/win_bg"
+                                android:textSize="18dp">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/computer"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_height="150dp">
+
+                    <EditText
+                        android:id="@+id/and_Player1"
+                        android:layout_height="wrap_content"
+                        android:hint="Player One"
+                        android:inputType="textPersonName"
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="35dp">
+                    </EditText>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="15dp">
+
+                        <LinearLayout
+                            android:id="@+id/novice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/win_bg"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            >
+                            <TextView
+                                android:id="@+id/txt_novice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="NOVICE"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="8dp"
+                                android:paddingLeft="8dp"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="16dp">
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/expert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"
+                            >
+                            <TextView
+                                android:id="@+id/txt_expert"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EXPERT"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="8dp"
+                                android:paddingLeft="8dp"
+                                android:textColor="@color/win_bg"
+                                android:textSize="16dp">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
 
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -103,6 +299,7 @@
                             android:textColor="@color/win_bg"
                             android:textSize="23dp">
                         </TextView>
+
 
 
                     </LinearLayout>
