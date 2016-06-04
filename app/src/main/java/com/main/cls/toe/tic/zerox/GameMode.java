@@ -21,7 +21,7 @@ import com.main.cls.toe.tic.zerox.R;
 import org.w3c.dom.Text;
 
 /**
- * Created by Team 3 - ZeroX Game
+ * Displays the game settings for Multiplayer screen
  */
 public class GameMode extends Activity implements View.OnClickListener {
     SharedPreferences pref;

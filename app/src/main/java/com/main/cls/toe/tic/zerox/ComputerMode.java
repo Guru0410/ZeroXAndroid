@@ -1,5 +1,6 @@
 package com.main.cls.toe.tic.zerox;
 
+
     import android.app.Dialog;
     import android.content.Context;
     import android.content.Intent;
@@ -14,7 +15,9 @@ package com.main.cls.toe.tic.zerox;
     import android.widget.LinearLayout;
     import android.widget.TextView;
     import android.widget.Toast;
-
+/**
+ * Displays the grid for Human vs Computer
+ */
 public class ComputerMode extends AppCompatActivity {
 
         private AIGame mGame;

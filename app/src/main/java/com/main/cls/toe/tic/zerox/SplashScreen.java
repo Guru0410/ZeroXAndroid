@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.main.cls.toe.tic.zerox.R;
 
 /**
- * Created by gsdevgun on 29-05-2016.
+ * Displays the ZeroX splash screen.
  */
 public class SplashScreen extends Activity {
 

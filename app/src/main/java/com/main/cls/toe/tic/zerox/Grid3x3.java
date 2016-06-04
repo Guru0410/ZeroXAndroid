@@ -1,5 +1,7 @@
 package com.main.cls.toe.tic.zerox;
 
+
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +20,11 @@ import android.support.design.widget.FloatingActionButton;
 
 import java.util.Scanner;
 import android.os.Handler;
-
 import com.main.cls.toe.tic.zerox.R;
+
+/**
+ * Displays the 3x3 grid
+ */
 
 public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,7 +54,7 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
     Context context;
     Intent intent;
     int Series, CrossWon, NoughtWon, DrawGame, Counter, turn_mode;
-    String player_1_name, player_2_name;
+    String player_1_name, player_2_name, cross_player_name, nought_player_name;
     MediaPlayer player_X, player_O;
 
     /**
@@ -75,7 +80,10 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
                 txt_player2_score.setText(String.valueOf(NoughtWon));
                 txt_draw_score.setText(String.valueOf(DrawGame));
                 txt_player_turn.setText("Player Turn : " + player_1_name);
-                txt_player_turn.setTextColor(Color.parseColor("#FF9E27"));
+                if(turn_mode == 1)
+                    txt_player_turn.setTextColor(Color.parseColor("#FF9E27"));
+                else
+                    txt_player_turn.setTextColor(Color.parseColor("#F42B6F"));
 
                 initGame();
             }
@@ -98,8 +106,21 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
 
         txt_player1_name.setText(player_1_name);
         txt_player2_name.setText(player_2_name);
-        txt_player_turn.setText("Player Turn : " + player_1_name);
-        txt_player_turn.setTextColor(Color.parseColor("#FF9E27"));
+
+        if(turn_mode == 1) {
+            txt_player_turn.setText("Player Turn : " + player_1_name);
+            txt_player_turn.setTextColor(Color.parseColor("#FF9E27"));
+
+            cross_player_name = player_1_name;
+            nought_player_name = player_2_name;
+        }else
+        {
+            txt_player_turn.setText("Player Turn : " + player_1_name);
+            txt_player_turn.setTextColor(Color.parseColor("#F42B6F"));
+
+            cross_player_name = player_2_name;
+            nought_player_name = player_1_name;
+        }
 
         for (int row = 1; row < ROWS; ++row) {
             for (int col = 1; col < COLS; ++col) {
@@ -145,12 +166,14 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
             if(currentState == CROSS_WON)
             {
                 CrossWon++;
-                txt_player_turn.setText(player_1_name + " Wins !");
+                txt_player_turn.setText(cross_player_name + " Wins !");
+                txt_player_turn.setTextColor(Color.parseColor("#27beff"));
             }
             else if(currentState == NOUGHT_WON)
             {
                 NoughtWon++;
-                txt_player_turn.setText(player_2_name + " Wins !");
+                txt_player_turn.setText(nought_player_name + " Wins !");
+                txt_player_turn.setTextColor(Color.parseColor("#27beff"));
             }
 
 
@@ -190,8 +213,8 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
         System.out.println("Draw : " + DrawGame);
         System.out.println("Counter : " + Counter);
 
-        txt_player1_score.setText(String.valueOf(CrossWon));
-        txt_player2_score.setText(String.valueOf(NoughtWon));
+        txt_player1_score.setText((turn_mode == 1) ? String.valueOf(CrossWon) : String.valueOf(NoughtWon));
+        txt_player2_score.setText((turn_mode == 1) ? String.valueOf(NoughtWon) :  String.valueOf(CrossWon));
         txt_draw_score.setText(String.valueOf(DrawGame));
 
         if(Counter > 0)
@@ -465,9 +488,9 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
                 currentPlayer = (currentPlayer == CROSS) ? NOUGHT : CROSS;
                 if(currentState == PLAYING) {
                     if (currentPlayer == CROSS)
-                        txt_player_turn.setText("Player Turn : " + player_1_name);
+                        txt_player_turn.setText("Player Turn : " + cross_player_name);
                     else
-                        txt_player_turn.setText("Player Turn : " + player_2_name);
+                        txt_player_turn.setText("Player Turn : " + nought_player_name);
                 }
             }
         }
@@ -522,10 +545,10 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
                 case 1: txtMsg2.setText("Game DRAWN !");
                         break;
 
-                case 2: txtMsg2.setText(player_1_name + " Won the Game !");
+                case 2: txtMsg2.setText(((turn_mode == 1) ? player_1_name : player_2_name) + " Won the Game !");
                         break;
 
-                case 3: txtMsg2.setText(player_2_name + " Won the Game !");
+                case 3: txtMsg2.setText(((turn_mode == 0) ? player_1_name : player_2_name) + " Won the Game !");
                         break;
             }
 
@@ -570,7 +593,11 @@ public class Grid3x3 extends AppCompatActivity implements View.OnClickListener {
                     txt_player2_score.setText(String.valueOf(NoughtWon));
                     txt_draw_score.setText(String.valueOf(DrawGame));
                     txt_player_turn.setText("Player Turn : " + player_1_name);
-                    txt_player_turn.setTextColor(Color.parseColor("#FF9E27"));
+
+                    if(turn_mode == 1)
+                        txt_player_turn.setTextColor(Color.parseColor("#FF9E27"));
+                    else
+                        txt_player_turn.setTextColor(Color.parseColor("#F42B6F"));
 
                     initGame();
 

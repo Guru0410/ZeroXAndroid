@@ -5,7 +5,6 @@ import android.graphics.Color;
 import java.util.Random;
 
 /**
- * Created by Team 3.
  * This class contains the logic for artificial intelligence in our game.
  */
 public class AIGame {
